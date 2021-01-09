@@ -5,8 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.concurrent.TimeUnit;
-
 import org.junit.*;
 
 import Supporting_Classes.CheckOut;
@@ -20,18 +18,18 @@ public class OrderOneItem {
 		driver.get("https://stickerfy.herokuapp.com/");
 		
 		OrderOneHappyItem.order1Happy(driver);		
-		Thread.sleep(1000);
-		//driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		Thread.sleep(1000);		
 				
 		CheckOut.checkOut(driver);
 		Thread.sleep(3000);
-		//driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		// Note that I was unable to get an implicit or explicit wait to work.  That is why
+		// I am using Thread.sleep.  I do know that it is preferred to use a wait instead of Thread.Sleep.
 		
 		WebElement total = driver.findElement(By.id("total"));
 		
 		Assert.assertEquals("Total: $5.5", total.getText());
 		
-		//Note - would not have the below in a normal test.  Just added it for reference.
+		//Note - I would not have the below in a normal test.  Just added it for reference.
 		System.out.println(total.getText());
 				
 		driver.quit();			

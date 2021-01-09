@@ -6,10 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.junit.*;
 
-import Supporting_Classes.CheckOut;
 import Supporting_Classes.OrderThreeHappyItems;
 import Supporting_Classes.RemoveAll;
-import Supporting_Classes.RemoveOne;
 
 public class Order3OfOneItemRemoveAll {
 
@@ -23,12 +21,14 @@ public class Order3OfOneItemRemoveAll {
 		
 		RemoveAll.removeAll(driver);
 		Thread.sleep(2000);
+		// Note that I was unable to get an implicit or explicit wait to work.  That is why
+		// I am using Thread.sleep.  I do know that it is preferred to use a wait instead of Thread.Sleep.
 				
 		WebElement removeAllResult = driver.findElement(By.xpath("/html/body/div/div/div/h2"));
 		
 		Assert.assertEquals("Add items to the cart", removeAllResult.getText());
 		
-		//Note - would not have the below in a normal test.  Just added it for reference.
+		//Note - I would not have the below in a normal test.  Just added it for reference.
 		System.out.println(removeAllResult.getText());
 				
 		driver.quit();			

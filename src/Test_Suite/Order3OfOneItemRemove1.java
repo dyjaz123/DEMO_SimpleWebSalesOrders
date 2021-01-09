@@ -25,12 +25,14 @@ public class Order3OfOneItemRemove1 {
 				
 		CheckOut.checkOut(driver);
 		Thread.sleep(2000);
+		// Note that I was unable to get an implicit or explicit wait to work.  That is why
+		// I am using Thread.sleep.  I do know that it is preferred to use a wait instead of Thread.Sleep.
 		
 		WebElement total = driver.findElement(By.id("total"));
 		
 		Assert.assertEquals("Total: $11", total.getText());
 		
-		//Note - would not have the below in a normal test.  Just added it for reference.
+		//Note - I would not have the below in a normal test.  Just added it for reference.
 		System.out.println(total.getText());
 				
 		driver.quit();			
